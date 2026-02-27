@@ -1,0 +1,248 @@
+[gd_scene load_steps=3 format=3 uid="uid://main_scene"]
+
+[ext_resource type="Script" path="res://scripts/main_ui.gd" id="1_main_ui"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_game_manager"]
+[ext_resource type="VideoStream" path="res://resources/login.ogv" id="3_video"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main_ui")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_game_manager")
+
+[node name="BackgroundVideo" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+stream = ExtResource("3_video")
+autoplay = true
+expand_mode = 1
+
+[node name="Background" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.3)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "🤖 LOOI 机器人"
+horizontal_alignment = 1
+
+[node name="StatusContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CoinsLabel" type="Label" parent="MainContainer/StatusContainer"]
+layout_mode = 2
+text = "💰 金币: 100"
+
+[node name="LevelLabel" type="Label" parent="MainContainer/StatusContainer"]
+layout_mode = 2
+text = "⭐ 等级: 1"
+
+[node name="AffectionLabel" type="Label" parent="MainContainer/StatusContainer"]
+layout_mode = 2
+text = "❤️ 好感: 50"
+
+[node name="EnergyLabel" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "⚡ 能量: 100/100"
+
+[node name="EnergyBar" type="ProgressBar" parent="MainContainer"]
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="JobLabel" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "📋 状态: 空闲"
+horizontal_alignment = 1
+
+[node name="JobProgressBar" type="ProgressBar" parent="MainContainer"]
+layout_mode = 2
+visible = false
+max_value = 100.0
+
+[node name="ButtonContainer" type="GridContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="MineButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "⛏️ 挖矿"
+
+[node name="TradeButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "💰 交易"
+
+[node name="QuestButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "📜 任务"
+
+[node name="StudyButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "📚 学习"
+
+[node name="ShopButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "🛒 商店"
+
+[node name="RestaurantButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "🍔 快餐店"
+
+[node name="ShopPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopTitle" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 15.0
+offset_right = 60.0
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "商店"
+horizontal_alignment = 1
+
+[node name="CloseShopButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+offset_left = 340.0
+offset_top = 10.0
+offset_right = 380.0
+offset_bottom = 40.0
+text = "✕"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="ShopItemContainer" type="VBoxContainer" parent="ShopPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="RestaurantPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestaurantTitle" type="Label" parent="RestaurantPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 15.0
+offset_right = 100.0
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "🍔 LOOI 快餐店"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="RestaurantPanel"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 80.0
+offset_bottom = 45.0
+text = "← 返回"
+
+[node name="OrderLabel" type="Label" parent="RestaurantPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 80.0
+offset_right = 150.0
+offset_bottom = 130.0
+grow_horizontal = 2
+text = "等待顾客点餐..."
+horizontal_alignment = 1
+
+[node name="FoodContainer" type="HBoxContainer" parent="RestaurantPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1

@@ -1,0 +1,29 @@
+# Godot 4 忽略文件
+
+# 导入文件
+.import/
+
+# 导出文件
+export/
+export_presets.cfg
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+*~
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# 日志
+*.log
+
+# 本地配置
+editor_settings.xml
