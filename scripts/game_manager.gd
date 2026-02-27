@@ -16,7 +16,17 @@ var shop_items: Array[Dictionary] = [
 	{"name": "幸运护符", "cost": 200.0, "description": "打工收益 +10%", "type": "buff", "value": 0.1},
 	{"name": "学习书籍", "cost": 150.0, "description": "获得 50 经验", "type": "experience", "value": 50.0},
 	{"name": "豪华礼物", "cost": 500.0, "description": "增加 10 好感度", "type": "affection", "value": 10.0},
-	{"name": "超级能量饮料", "cost": 100.0, "description": "完全恢复能量", "type": "energy", "value": 100.0}
+	{"name": "超级能量饮料", "cost": 100.0, "description": "完全恢复能量", "type": "energy", "value": 100.0},
+	{"name": "胡萝卜种子", "cost": 10.0, "description": "种胡萝卜", "type": "seed", "value": "胡萝卜"},
+	{"name": "番茄种子", "cost": 15.0, "description": "种番茄", "type": "seed", "value": "番茄"},
+	{"name": "玉米种子", "cost": 20.0, "description": "种玉米", "type": "seed", "value": "玉米"},
+	{"name": "草莓种子", "cost": 30.0, "description": "种草莓", "type": "seed", "value": "草莓"},
+	{"name": "西瓜种子", "cost": 50.0, "description": "种西瓜", "type": "seed", "value": "西瓜"},
+	{"name": "宠物食物", "cost": 20.0, "description": "喂养宠物", "type": "pet_food", "value": 1.0},
+	{"name": "小猫", "cost": 100.0, "description": "领养小猫 金币+10%", "type": "pet", "value": "小猫"},
+	{"name": "小狗", "cost": 150.0, "description": "领养小狗 金币+15%", "type": "pet", "value": "小狗"},
+	{"name": "小兔子", "cost": 80.0, "description": "领养小兔子 金币+8%", "type": "pet", "value": "小兔子"},
+	{"name": "小鸟", "cost": 120.0, "description": "领养小鸟 金币+12%", "type": "pet", "value": "小鸟"}
 ]
 
 func _ready() -> void:
@@ -34,6 +44,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_paused:
 		looi.update_job(delta)
+		looi.update_farm(delta)
+		looi.update_pet(delta)
+		looi.update_mini_game(delta)
 
 ## 购买物品
 func purchase_item(item_index: int) -> bool:
@@ -58,6 +71,17 @@ func purchase_item(item_index: int) -> bool:
 		"affection":
 			if looi.buy_item(item["cost"]):
 				looi.change_affection(item["value"])
+				return true
+		"seed":
+			if looi.buy_item(item["cost"]):
+				looi.add_item(item["value"] + "种子", 1)
+				return true
+		"pet_food":
+			if looi.buy_item(item["cost"]):
+				looi.add_item("食物", 1)
+				return true
+		"pet":
+			if looi.adopt_pet(item["value"]):
 				return true
 
 	return false
